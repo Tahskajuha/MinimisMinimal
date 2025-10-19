@@ -50,7 +50,7 @@ FocusScope {
     property bool filterByFavorites: false
     property bool filterByBookmarks: false
 
-    property var orderByFields: ['title', 'developer', 'publisher', 'genre', 'releaseYear', 'players', 'rating', 'lastPlayed']
+    property var orderByFields: ['title', 'developer', 'publisher', 'genre', 'players', 'lastPlayed']
     property int orderByIndex: 0
     property int orderByDirection: Qt.AscendingOrder
 
@@ -133,7 +133,7 @@ FocusScope {
     Background {
         anchors.fill: parent
 
-        source: contentLoader.game ? contentLoader.game.assets.screenshot || '' : ''
+        source: contentLoader.game ? contentLoader.game.assets.background || '' : ''
 
         Image {
             id: loadingIndicator

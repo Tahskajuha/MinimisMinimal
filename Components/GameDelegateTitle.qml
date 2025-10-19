@@ -69,8 +69,8 @@ Column {
                 switch (parent.orderByField) {
                     case 'players':
                         return '\uf007'
-                    case 'rating':
-                        return (game.rating == null || game.rating < 0.33) ? '\uf006' : game.rating < 0.66 ? '\uf123' : '\uf005';
+                    // case 'rating':
+                    //     return (game.rating == null || game.rating < 0.33) ? '\uf006' : game.rating < 0.66 ? '\uf123' : '\uf005';
                     default:
                         return '';
                 }
@@ -120,8 +120,8 @@ Column {
                         return `${value > 1 ? '1 - ' : ' '}${value}`;
                     case 'lastPlayed':
                         return getTimeAgo(value);
-                    case 'rating':
-                        return `${game.rating != null ? Math.round(parseFloat(game.rating * 100)) : 0}%`
+                    // case 'rating':
+                    //     return `${game.rating != null ? Math.round(parseFloat(game.rating * 100)) : 0}%`
                     default:
                         return value;
                 }

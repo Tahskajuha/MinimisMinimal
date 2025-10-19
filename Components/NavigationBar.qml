@@ -35,8 +35,8 @@ Item {
                 return `${value > 1 ? '1 - ' : ' '}${value}`;
             case 'lastPlayed':
                 return getTimeAgo(value);
-            case 'rating':
-                return `${value != null ? Math.round(parseFloat(value * 100)) : 0}%`
+            // case 'rating':
+            //     return `${value != null ? Math.round(parseFloat(value * 100)) : 0}%`
             default:
                 return value;
         }
@@ -126,7 +126,7 @@ Item {
             }
             case 'releaseYear':
             case 'players':
-            case 'rating':
+            // case 'rating':
             case 'lastPlayed':
             default: 
             {
@@ -196,7 +196,7 @@ Item {
             }
             case 'releaseYear':
             case 'players':
-            case 'rating':
+            // case 'rating':
             case 'lastPlayed':
             default: 
             {

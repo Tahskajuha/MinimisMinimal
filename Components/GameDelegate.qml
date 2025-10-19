@@ -114,7 +114,7 @@ Item {
 
         fillMode: aspectRatioNative ? Image.PreserveAspectFit : Image.PreserveAspectCrop
 
-        visible: !screenshot.hasError
+        visible: true
 
         opacity: (isLoading || isPlayingPreview) ? 0 : 1
         Behavior on opacity { NumberAnimation { duration: animationArtFadeDuration; } enabled: animationEnabled && !screenshot.hasError }
@@ -144,7 +144,7 @@ Item {
 
         fillMode: Image.PreserveAspectFit
 
-        visible: !logo.hasError
+        visible: true
 
         opacity: !isLoading && !screenshot.hasError && (isPlayingPreview ? logoVisiblePreview : logoVisible) ? 1 : 0
         Behavior on opacity { NumberAnimation { duration: animationLogoFadeDuration; } enabled: animationEnabled && !logo.hasError }

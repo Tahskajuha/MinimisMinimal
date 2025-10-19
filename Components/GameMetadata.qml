@@ -14,8 +14,8 @@ ColumnLayout {
 
     readonly property real fontSize: vpx(18) * uiScale
 
-    readonly property string year: game && game.releaseYear != 0 ? game.releaseYear : 'N/A'
-    readonly property real rating: game && game.rating != null ? parseFloat(game.rating * 5).toPrecision(2) : 0
+    // readonly property string year: game && game.releaseYear != 0 ? game.releaseYear : 'N/A'
+    // readonly property real rating: game && game.rating != null ? parseFloat(game.rating * 5).toPrecision(2) : 0
     readonly property int players: game ? game.players : 0
 
     onGameChanged: {
@@ -129,19 +129,19 @@ ColumnLayout {
 
         spacing: vpx(20)
 
-        Text {
-            text: year
-            anchors.verticalCenter: parent.verticalCenter
+        // Text {
+        //     text: year
+        //     anchors.verticalCenter: parent.verticalCenter
+        //
+        //     font.pixelSize: fontSize
+        //     font.family: subtitleFont.name
+        //     font.bold: true
+        //     color: api.memory.get('settings.general.textColor')
+        //
+        //     verticalAlignment: Text.AlignVCenter
+        // }
 
-            font.pixelSize: fontSize
-            font.family: subtitleFont.name
-            font.bold: true
-            color: api.memory.get('settings.general.textColor')
-
-            verticalAlignment: Text.AlignVCenter
-        }
-
-        Circle { radius: vpx(2); anchors.verticalCenter: parent.verticalCenter }
+        // Circle { radius: vpx(2); anchors.verticalCenter: parent.verticalCenter }
 
         Rectangle {
             id: playersBackground
@@ -171,42 +171,42 @@ ColumnLayout {
             }
         }
 
-        Circle { radius: vpx(2); anchors.verticalCenter: parent.verticalCenter }
+        // Circle { radius: vpx(2); anchors.verticalCenter: parent.verticalCenter }
 
-        Row {
-            spacing: vpx(10) * uiScale
-            anchors.verticalCenter: parent.verticalCenter
-
-            Text {
-                text: root.rating
-                anchors.verticalCenter: parent.verticalCenter
-
-                font.pixelSize: fontSize * 0.9
-                font.family: subtitleFont.name
-                color: api.memory.get('settings.general.textColor')
-
-                verticalAlignment: Text.AlignVCenter
-            }
-
-            Row {
-                id: ratingStars
-                anchors.verticalCenter: parent.verticalCenter;
-
-                spacing: vpx(4) * uiScale
-                Repeater {
-                    model: 5
-                    delegate: Text {
-                        text: root.rating <= index ? '\uf006' : root.rating <= index + 0.5 ? '\uf123' : '\uf005'
-                        anchors.verticalCenter: parent.verticalCenter;
-                        font.family: fontawesome.name
-                        font.pixelSize: fontSize
-                        color: api.memory.get('settings.general.textColor')
-
-                        verticalAlignment: Text.AlignVCenter
-                    }
-                }
-            }
-        }
+        // Row {
+        //     spacing: vpx(10) * uiScale
+        //     anchors.verticalCenter: parent.verticalCenter
+        //
+        //     Text {
+        //      text: root.rating
+        //         anchors.verticalCenter: parent.verticalCenter
+        //
+        //         font.pixelSize: fontSize * 0.9
+        //         font.family: subtitleFont.name
+        //         color: api.memory.get('settings.general.textColor')
+        //
+        //         verticalAlignment: Text.AlignVCenter
+        //     }
+        //
+        //     Row {
+        //         id: ratingStars
+        //         anchors.verticalCenter: parent.verticalCenter;
+        //
+        //         spacing: vpx(4) * uiScale
+        //         Repeater {
+        //             model: 5
+        //             delegate: Text {
+        //                 text: root.rating <= index ? '\uf006' : root.rating <= index + 0.5 ? '\uf123' : '\uf005'
+        //                 anchors.verticalCenter: parent.verticalCenter;
+        //                 font.family: fontawesome.name
+        //                 font.pixelSize: fontSize
+        //                 color: api.memory.get('settings.general.textColor')
+        //
+        //                 verticalAlignment: Text.AlignVCenter
+        //             }
+        //         }
+        //     }
+        // }
 
         layer.enabled: true
         layer.effect: DropShadowLow { }
