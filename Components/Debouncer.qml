@@ -1,4 +1,5 @@
-import QtQuick 2.8
+import QtQuick 2.15
+import QtQml 2.15
 
 Timer {
     id: root

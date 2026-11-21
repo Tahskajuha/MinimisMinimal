@@ -15,29 +15,54 @@ FocusScope {
 
     states: [
         State {
-            name: "full";
-            PropertyChanges { target: showcase; y: header.height }
-            PropertyChanges { target: showcaseMetadata; y: -showcaseMetadata.height; opacity: 0 }
+            name: "full"
+            PropertyChanges {
+                target: showcase
+                y: header.height
+            }
+            PropertyChanges {
+                target: showcaseMetadata
+                y: -showcaseMetadata.height
+                opacity: 0
+            }
         },
-        State { name: "half"; }
+        State {
+            name: "half"
+        }
     ]
 
     transitions: [
         Transition {
-            NumberAnimation { target: showcase; property: 'y'; duration: 300 }
-            NumberAnimation { target: showcase; property: 'height'; duration: 300 }
-            NumberAnimation { target: showcaseMetadata; property: 'y'; duration: 300 }
-            NumberAnimation { target: showcaseMetadata; property: 'opacity'; duration: 300 }
+            NumberAnimation {
+                target: showcase
+                property: 'y'
+                duration: 300
+            }
+            NumberAnimation {
+                target: showcase
+                property: 'height'
+                duration: 300
+            }
+            NumberAnimation {
+                target: showcaseMetadata
+                property: 'y'
+                duration: 300
+            }
+            NumberAnimation {
+                target: showcaseMetadata
+                property: 'opacity'
+                duration: 300
+            }
         }
     ]
 
-    state: showcase.list.currentIndex < (showcase.list.count - 1) ? 'half' : 'full'
+    state: showcase.list.currentGame ? 'half' : 'full'
 
     FocusScope {
         focus: true
-        anchors.fill: parent;
-        anchors.leftMargin: vpx(api.memory.get('settings.general.leftMargin'));
-        anchors.rightMargin: vpx(api.memory.get('settings.general.rightMargin'));
+        anchors.fill: parent
+        anchors.leftMargin: vpx(api.memory.get('settings.general.leftMargin'))
+        anchors.rightMargin: vpx(api.memory.get('settings.general.rightMargin'))
 
         GameMetadata {
             id: showcaseMetadata
@@ -58,8 +83,6 @@ FocusScope {
             height: parent.height - header.height
 
             y: showcaseMetadata.height
-
-            rowHeight: (root.height / 2) * 0.66
 
             onCurrentGameChanged: {
                 if (currentGame != null) {
@@ -85,12 +108,10 @@ FocusScope {
 
         ShowcaseViewHeader {
             id: header
-            
+
             onDropdownUpdated: {
                 showcase.focus = true;
-                showcase.list.currentIndex = showcase.list.count - 1;
-                var gameLibraryDelegate = listView.itemAtIndex(listView.currentIndex);
-                gameLibraryDelegate.currentIndex = 0;
+                showcase.currentIndex = 0;
             }
         }
 
@@ -107,28 +128,8 @@ FocusScope {
                 showcase.nextLetter();
             }
 
-            if (api.keys.isNextPage(event)) {
-                event.accepted = true;
-                currentCollectionIndex = (currentCollectionIndex < (api.collections.count - 1)) ? (currentCollectionIndex + 1) : 0;
-                showcase.focus = true;
-                showcase.list.currentIndex = showcase.list.count - 1;
-                var gameLibraryDelegate = showcase.list.itemAtIndex(showcase.list.currentIndex);
-                gameLibraryDelegate.currentIndex = 0;
-                sfxAccept.play();
-            }
-
-            if (api.keys.isPrevPage(event)) {
-                event.accepted = true;
-                currentCollectionIndex = (currentCollectionIndex > 0) ? (currentCollectionIndex - 1) : (api.collections.count - 1);
-                showcase.focus = true;
-                showcase.list.currentIndex = showcase.list.count - 1;
-                var gameLibraryDelegate = showcase.list.itemAtIndex(showcase.list.currentIndex);
-                gameLibraryDelegate.currentIndex = 0;
-                sfxAccept.play();
-            }
-
             if (api.keys.isDetails(event) && !event.isAutoRepeat) {
-                if (showcase.focus && showcase.list.currentIndex != showcase.list.count - 1) {
+                if (showcase.focus && showcase.currentGame != null) {
                     event.accepted = true;
                     showcaseMetadata.showDetails = !showcaseMetadata.showDetails;
 
