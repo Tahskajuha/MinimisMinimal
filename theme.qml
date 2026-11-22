@@ -62,7 +62,7 @@ FocusScope {
         api.memory.set('state.state', root.state);
         api.memory.set('state.stateHistory', JSON.stringify(stateHistory));
         api.memory.set('state.filterByBookmarks', filterByBookmarks);
-        api.memory.set('state.selectedGame', selectedGame);
+        api.memory.set('state.selectedGame', api.allGames.indexOf(game));
         api.memory.set('state.selectedGameHistory', JSON.stringify(selectedGameHistory));
 
         api.memory.set('state.gameLibraryIndex', gameLibraryIndex);
@@ -191,6 +191,9 @@ FocusScope {
 
                 anchors.fill: parent
                 focus: root.state === 'showcaseView'
+
+                currentIndex: root.gameLibraryIndex
+                onCurrentIndexChanged: root.gameLibraryIndex = currentIndex
 
                 visible: focus
                 opacity: focus ? 1 : 0

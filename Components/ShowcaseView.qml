@@ -11,6 +11,7 @@ FocusScope {
     readonly property var game: currentGame ?? previousGame
 
     readonly property alias currentGame: showcase.currentGame
+    property alias currentIndex: showcase.currentIndex
     property var previousGame: undefined
 
     states: [
