@@ -5,35 +5,28 @@ Item {
     anchors.fill: parent
 
     readonly property alias games: games
-    readonly property alias model: games.sourceModel
 
-    ValueFilter { id: gameFilters; roleName: 'favorite'; value: true; enabled: filterByFavorites }
-
-    FilterSorter {
-        id: playCountSorter
-        ValueFilter {
-            roleName: 'playCount'
-            value: 0
-            inverted: true
-        }
-        enabled: orderByFields[orderByIndex] === 'lastPlayed'
-        sortOrder: orderByDirection
+    ValueFilter {
+        id: bookmarkFilter
+        roleName: 'favorite'
+        value: true
+        enabled: filterByBookmarks
     }
 
     RoleSorter {
-        id: sorter
-        roleName: orderByFields[orderByIndex]
-        sortOrder: orderByDirection
-    } 
+        id: titleSorter
+        roleName: 'title'
+        sortOrder: Qt.AscendingOrder
+    }
 
     SortFilterProxyModel {
         id: games
 
-        sourceModel: currentCollection.games
+        sourceModel: api.allGames
 
-        filters: gameFilters
-        sorters: [ playCountSorter, sorter ]
+        filters: bookmarkFilter
+        sorters: [titleSorter]
 
-        // delayed: true
+        delayed: true
     }
 }

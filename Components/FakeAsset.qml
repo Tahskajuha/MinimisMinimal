@@ -2,15 +2,15 @@ import QtQuick 2.3
 import QtMultimedia 5.9
 
 Image {
-    property var collection 
+    property var games
     readonly property string assetKey: settingsMetadata.library.art.values[api.memory.get('settings.library.art')]
 
     source: {
-        if (collection != null) {
-            for (var i = 0; i < collection.games.count; i++) {
-                var game = collection.games.get(i);
-                if (game && game.assets[assetKey]) {
-                    return game.assets[assetKey] || '';
+        if (games != null) {
+            for (let i = 0; i < games.count; i++) {
+                let game = games.get(i);
+                if (game && game.assets && game.assets[assetKey]) {
+                    return game.assets[assetKey];
                 }
             }
         }

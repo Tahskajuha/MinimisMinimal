@@ -46,15 +46,15 @@ FocusScope {
         source: "assets/sfx/toggle.wav"
     }
 
+    GameLibraryModel {
+        id: gameLibraryModel
+    }
+
     property var settingsMetadata: Settings.metadata
-
     property var stateHistory: []
-
     property var selectedGame
     property var selectedGameHistory: []
-
     property int gameLibraryIndex: 0
-
     property bool filterByBookmarks: false
 
     function saveState(game) {
